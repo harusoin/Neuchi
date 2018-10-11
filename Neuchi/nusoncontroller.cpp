@@ -23,7 +23,8 @@ T PtreeToNusonData(const ptree &nusontree, std::string accessor,
 void NusonController::LoadNusonFile(const std::string &filename)
 {
 	std::unique_ptr<NusonData> temp_nuson_data(new NusonData);
-	read_json(filename, current_nuson_data);
+	ptree current_nuson_raw_data;
+	read_json(filename, current_nuson_raw_data);
 
 	try
 	{
@@ -52,13 +53,13 @@ void NusonController::LoadNusonFile(const std::string &filename)
 			const ptree& objects = child.second;
 			t.type = PtreeToNusonData<std::string>(objects, "type");
 			t.notes = new std::vector<NusonNoteData>;
-			for (auto child_object : current_nuson_raw_data.get_child("notes")) {
+			for (auto child_object : objects.get_child("notes")) {
 				NusonNoteData t2;
-				const ptree& objects = child.second;
-				t2.type = PtreeToNusonData<std::string>(objects, "type");
-				t2.x = PtreeToNusonData<int>(objects, "x", 0);
-				t2.y = PtreeToNusonData<int>(objects, "y", 0);
-				t2.l = PtreeToNusonData<int>(objects, "l", 0);
+				const ptree& notes = child_object.second;
+				t2.type = PtreeToNusonData<std::string>(notes, "type");
+				t2.x = PtreeToNusonData<int>(notes, "x", 0);
+				t2.y = PtreeToNusonData<int>(notes, "y", 0);
+				t2.l = PtreeToNusonData<int>(notes, "l", 0);
 				t.notes->push_back(t2);
 			}
 			temp_nuson_data->objects->push_back(t);

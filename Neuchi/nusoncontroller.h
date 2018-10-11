@@ -80,7 +80,6 @@ public:
 	void LoadNusonFile(const std::string &filename);
 	~NusonController();
 private:
-	ptree current_nuson_raw_data;
 	std::unique_ptr<NusonData> current_nuson_data;
 };
 }
