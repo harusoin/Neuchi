@@ -21,6 +21,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="nusoncontroller.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="nusoncontroller.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{3027DD6C-440B-4102-9D0C-0D48C9DC99D9}</ProjectGuid>
